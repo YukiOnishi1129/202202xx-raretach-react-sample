@@ -6,6 +6,8 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 /* hooks */
 import { useApp } from "./useApp";
+/* logic */
+import { searchTodo } from "../logic/TodoLogic";
 /* data */
 import { INIT_TODO_LIST } from "../constants/data";
 
@@ -175,6 +177,45 @@ describe("【Hooksテスト】useApp test", () => {
       expect(result.current[0].originTodoList).toEqual(expectTodoList);
       // 表示用TodoListが予想通り更新されないこと
       expect(result.current[0].showTodoList).toEqual(expectTodoList);
+    });
+  });
+
+  describe("【関数テスト】handleSearchTodo", () => {
+    test("【正常系】検索ワードがある場合、検索された結果が反映される", () => {
+      // 予測値
+      const expectValue = [INIT_TODO_LIST[0]];
+      // 引数
+      const eventObject = {
+        target: {
+          value: "Todo1",
+        },
+      };
+      // mock
+      jest.fn(searchTodo).mockReturnValue(INIT_TODO_LIST[0]);
+
+      // hooks呼び出し
+      const { result } = renderHook(() => useApp());
+      // hooks関数の実行
+      act(() => result.current[1].handleSearchTodo(eventObject));
+      // 結果判定
+      expect(result.current[0].showTodoList).toEqual(expectValue);
+    });
+    test("【正常系】検索ワードがない場合、元のTodoリストが反映される", () => {
+      // 予測値
+      const expectValue = INIT_TODO_LIST;
+      // 引数
+      const eventObject = {
+        target: {
+          value: "",
+        },
+      };
+
+      // hooks呼び出し
+      const { result } = renderHook(() => useApp());
+      // hooks関数の実行
+      act(() => result.current[1].handleSearchTodo(eventObject));
+      // 結果判定
+      expect(result.current[0].showTodoList).toEqual(expectValue);
     });
   });
 });
