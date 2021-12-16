@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.5157a1f8.css",
-    "main.js": "/static/js/main.b316e66d.js",
-    "static/js/787.a6eab213.chunk.js": "/static/js/787.a6eab213.chunk.js",
-    "index.html": "/index.html",
-    "main.5157a1f8.css.map": "/static/css/main.5157a1f8.css.map",
-    "main.b316e66d.js.map": "/static/js/main.b316e66d.js.map",
-    "787.a6eab213.chunk.js.map": "/static/js/787.a6eab213.chunk.js.map"
+    "main.css": "/202202xx-raretach-react-sample/static/css/main.5157a1f8.css",
+    "main.js": "/202202xx-raretach-react-sample/static/js/main.b4668da4.js",
+    "static/js/787.a6eab213.chunk.js": "/202202xx-raretach-react-sample/static/js/787.a6eab213.chunk.js",
+    "index.html": "/202202xx-raretach-react-sample/index.html",
+    "main.5157a1f8.css.map": "/202202xx-raretach-react-sample/static/css/main.5157a1f8.css.map",
+    "main.b4668da4.js.map": "/202202xx-raretach-react-sample/static/js/main.b4668da4.js.map",
+    "787.a6eab213.chunk.js.map": "/202202xx-raretach-react-sample/static/js/787.a6eab213.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5157a1f8.css",
-    "static/js/main.b316e66d.js"
+    "static/js/main.b4668da4.js"
   ]
 }
