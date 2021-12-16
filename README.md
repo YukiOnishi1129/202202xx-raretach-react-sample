@@ -1,4 +1,4 @@
-# RareTECH 20211208 授業用 React TodoList
+# RareTECH 202102 授業用 React TodoList
 
 url:
 
