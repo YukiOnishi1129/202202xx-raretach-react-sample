@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# RareTECH 20211208 授業用 React TodoList
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+url:
 
-## Available Scripts
+## 機能
 
-In the project directory, you can run:
+- Todo 一覧表示
+- Todo 検索処理
+- Todo 新規追加
+- Todo 削除
 
-### `npm start`
+## 環境構築
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. git clone
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+git clone git@github.com:YukiOnishi1129/20211208-raretach-react-sample.git
+```
 
-### `npm test`
+2. プロジェクトディレクトリに移動
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ターミナルで以下のコマンドを実行
 
-### `npm run build`
+```
+cd 20211208-raretach-react-sample
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. node_modules を install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ターミナルで以下のコマンドを実行
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+yarn
+```
 
-### `npm run eject`
+4. アプリ起動
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- ターミナルで以下のコマンドを実行
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. url に接続
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+localhost:3000
+```
 
-## Learn More
+## その他
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- テスト実行
+  - ターミナルで以下のコマンドを実行
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+yarn test
+```
 
-### Code Splitting
+以下の内容がターミナルに表示されるので、「a」をクリックするとテストが実行される
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+Watch Usage
+ › Press a to run all tests.
+ › Press f to run only failed tests.
+ › Press q to quit watch mode.
+ › Press p to filter by a filename regex pattern.
+ › Press t to filter by a test name regex pattern.
+ › Press Enter to trigger a test run.
+```
