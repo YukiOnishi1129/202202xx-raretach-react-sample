@@ -4,6 +4,8 @@
  * @package hooks
  */
 import React from "react";
+/* logic */
+import { searchTodo } from "../logic/TodoLogic";
 /* data */
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../constants/data";
 
@@ -115,20 +117,6 @@ export const useApp = () => {
     } else {
       setShowTodoList(originTodoList);
     }
-  };
-
-  /**
-   * 検索処理
-   * @param {*} todoList
-   * @param {*} keyword
-   * @returns
-   */
-  const searchTodo = (todoList, keyword) => {
-    const newTodoList = todoList.filter((todo) => {
-      const regexp = new RegExp("^" + keyword, "i");
-      return todo.title.match(regexp);
-    });
-    return newTodoList;
   };
 
   return [
