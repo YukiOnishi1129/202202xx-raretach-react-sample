@@ -19,6 +19,10 @@ export const useApp = () => {
   const [addInputValue, setAddInputValue] = React.useState("");
   /* todo 採番ID */
   const [uniqueId, setUniqueId] = React.useState(INIT_UNIQUE_ID);
+  /* 検索キーワード */
+  const [searchKeyword, setSearchKeyword] = React.useState("");
+  /* 表示用TodoList */
+  const [showTodoList, setShowTodoList] = React.useState(INIT_TODO_LIST);
 
   /* actions */
   /**
@@ -86,15 +90,46 @@ export const useApp = () => {
     }
   };
 
+  /**
+   * Todo検索処理
+   * @param {*} e
+   */
+  const handleSearchTodo = (e) => {
+    const keyword = e.target.value;
+    setSearchKeyword(keyword);
+    if (keyword !== "") {
+      setShowTodoList(searchTodo(todoList, keyword));
+    } else {
+      setShowTodoList(todoList);
+    }
+  };
+
+  /**
+   * 検索処理
+   * @param {*} todoList
+   * @param {*} keyword
+   * @returns
+   */
+  const searchTodo = (todoList, keyword) => {
+    const newTodoList = todoList.filter((todo) => {
+      const regexp = new RegExp("^" + keyword, "i");
+      return todo.title.match(regexp);
+    });
+    return newTodoList;
+  };
+
   return [
     {
       todoList,
+      showTodoList,
       addInputValue,
+      searchKeyword,
     },
     {
       onChangeAddInputValue,
       handleAddTodo,
       handleDeleteTodo,
+      handleSearchTodo,
     },
   ];
 };

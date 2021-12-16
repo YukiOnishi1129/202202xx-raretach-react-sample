@@ -5,6 +5,7 @@ import React from "react";
 /* components */
 import { AddTodo } from "./components/AddTodo";
 import { TodoList } from "./components/TodoList";
+import { InputForm } from "./components/Common/InputForm";
 /* hooks */
 import { useApp } from "./hooks/useApp";
 /* styles */
@@ -12,7 +13,7 @@ import styles from "./App.module.css";
 
 export const App = () => {
   /* hooks */
-  const [state, actions] = useApp();
+  const [states, actions] = useApp();
 
   return (
     <div className={styles.App}>
@@ -20,20 +21,24 @@ export const App = () => {
       {/* Todo追加エリア */}
       <section className={styles.common}>
         <AddTodo
-          addInputValue={state.addInputValue}
+          addInputValue={states.addInputValue}
           onChangeTodo={actions.onChangeAddInputValue}
           handleAddTodo={actions.handleAddTodo}
         />
       </section>
       {/* Todo検索フォームエリア */}
       <section className={styles.common}>
-        <input type="text" placeholder="Search Keyword" />
+        <InputForm
+          inputValue={states.searchKeyword}
+          placeholder={"Search Keyword"}
+          handleChangeValue={actions.handleSearchTodo}
+        />
       </section>
       {/* Todoリスト一覧表示 */}
       <section className={styles.common}>
-        {state.todoList.length > 0 && (
+        {states.showTodoList.length > 0 && (
           <TodoList
-            todoList={state.todoList}
+            todoList={states.showTodoList}
             handleDeleteTodo={actions.handleDeleteTodo}
           />
         )}
