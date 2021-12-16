@@ -74,7 +74,9 @@ describe("【Hooksテスト】useApp test", () => {
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
       // TodoListが予測値どおり更新されたこと
-      expect(result.current[0].todoList).toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されたこと
+      expect(result.current[0].showTodoList).toEqual(expectTodoList);
       // 入力値(addInputValue)がリセットされたこと
       expect(result.current[0].addInputValue).toBe("");
     });
@@ -97,7 +99,9 @@ describe("【Hooksテスト】useApp test", () => {
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
       // TodoListが予測値どおり更新されない
-      expect(result.current[0].todoList).not.toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).not.toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).not.toEqual(expectTodoList);
       // 入力値(addInputValue)がリセットされない
       expect(result.current[0].addInputValue).not.toBe("");
     });
@@ -120,7 +124,9 @@ describe("【Hooksテスト】useApp test", () => {
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
       // TodoListが予測値どおり更新されない
-      expect(result.current[0].todoList).not.toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).not.toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).not.toEqual(expectTodoList);
     });
   });
 
@@ -148,10 +154,12 @@ describe("【Hooksテスト】useApp test", () => {
       const { result } = renderHook(() => useApp());
       act(() => result.current[1].handleDeleteTodo(targetId, targetTitle));
       // 指定したIDのTodoが削除されていること
-      expect(result.current[0].todoList).toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).toEqual(expectTodoList);
     });
 
-    test("【正常系】confirmでキャンセルをクリックした場合、todoが削除されること", () => {
+    test("【正常系】confirmでキャンセルをクリックした場合、todoが削除されないこと", () => {
       // 引数
       const targetId = 1;
       const targetTitle = "テスト";
@@ -164,7 +172,9 @@ describe("【Hooksテスト】useApp test", () => {
       const { result } = renderHook(() => useApp());
       act(() => result.current[1].handleDeleteTodo(targetId, targetTitle));
       // Todoの削除処理が実行されないこと
-      expect(result.current[0].todoList).toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).toEqual(expectTodoList);
     });
   });
 });
