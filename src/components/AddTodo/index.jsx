@@ -4,8 +4,10 @@
  * @package components
  */
 import React from "react";
+/* components */
+import { InputForm } from "../Common/InputForm";
 /* styles */
-import "./style.css";
+import styles from "./style.module.css";
 
 /**
  * AddTodo
@@ -18,13 +20,12 @@ export const AddTodo = (props) => {
 
   return (
     <>
-      <h2 className="add-title">ADD TODO</h2>
-      <input
-        type="text"
-        placeholder="New Todo"
-        value={addInputValue}
-        onChange={onChangeTodo}
-        onKeyDown={handleAddTodo}
+      <h2 className={styles.subTitle}>ADD TODO</h2>
+      <InputForm
+        inputValue={addInputValue}
+        placeholder={"New Todo"}
+        handleChangeValue={onChangeTodo}
+        handleKeyDown={handleAddTodo}
       />
     </>
   );

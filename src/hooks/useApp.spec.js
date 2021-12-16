@@ -6,6 +6,8 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 /* hooks */
 import { useApp } from "./useApp";
+/* logic */
+import { searchTodo } from "../logic/TodoLogic";
 /* data */
 import { INIT_TODO_LIST } from "../constants/data";
 
@@ -74,7 +76,9 @@ describe("【Hooksテスト】useApp test", () => {
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
       // TodoListが予測値どおり更新されたこと
-      expect(result.current[0].todoList).toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されたこと
+      expect(result.current[0].showTodoList).toEqual(expectTodoList);
       // 入力値(addInputValue)がリセットされたこと
       expect(result.current[0].addInputValue).toBe("");
     });
@@ -97,7 +101,9 @@ describe("【Hooksテスト】useApp test", () => {
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
       // TodoListが予測値どおり更新されない
-      expect(result.current[0].todoList).not.toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).not.toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).not.toEqual(expectTodoList);
       // 入力値(addInputValue)がリセットされない
       expect(result.current[0].addInputValue).not.toBe("");
     });
@@ -120,7 +126,14 @@ describe("【Hooksテスト】useApp test", () => {
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
       // TodoListが予測値どおり更新されない
-      expect(result.current[0].todoList).not.toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).not.toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).not.toEqual(expectTodoList);
+    });
+
+    test("【正常系】検索キーワードがある場合", () => {
+      // TODO: 確認1: originTodoListへのTodo追加処理が正常に行われること
+      // TODO: 確認2: 検索結果でshowTodoListが更新されること
     });
   });
 
@@ -148,10 +161,12 @@ describe("【Hooksテスト】useApp test", () => {
       const { result } = renderHook(() => useApp());
       act(() => result.current[1].handleDeleteTodo(targetId, targetTitle));
       // 指定したIDのTodoが削除されていること
-      expect(result.current[0].todoList).toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).toEqual(expectTodoList);
     });
 
-    test("【正常系】confirmでキャンセルをクリックした場合、todoが削除されること", () => {
+    test("【正常系】confirmでキャンセルをクリックした場合、todoが削除されないこと", () => {
       // 引数
       const targetId = 1;
       const targetTitle = "テスト";
@@ -164,7 +179,53 @@ describe("【Hooksテスト】useApp test", () => {
       const { result } = renderHook(() => useApp());
       act(() => result.current[1].handleDeleteTodo(targetId, targetTitle));
       // Todoの削除処理が実行されないこと
-      expect(result.current[0].todoList).toEqual(expectTodoList);
+      expect(result.current[0].originTodoList).toEqual(expectTodoList);
+      // 表示用TodoListが予想通り更新されないこと
+      expect(result.current[0].showTodoList).toEqual(expectTodoList);
+    });
+
+    test("【正常系】検索キーワードがある場合", () => {
+      // TODO: 確認1: originTodoListへのTodo削除処理が正常に行われること
+      // TODO: 確認2: 検索結果でshowTodoListが更新されること (showTodoListへもTodo削除処理の結果が反映されること)
+    });
+  });
+
+  describe("【関数テスト】handleSearchTodo", () => {
+    test("【正常系】検索ワードがある場合、検索された結果が反映される", () => {
+      // 予測値
+      const expectValue = [INIT_TODO_LIST[0]];
+      // 引数
+      const eventObject = {
+        target: {
+          value: "Todo1",
+        },
+      };
+      // mock
+      jest.fn(searchTodo).mockReturnValue(INIT_TODO_LIST[0]);
+
+      // hooks呼び出し
+      const { result } = renderHook(() => useApp());
+      // hooks関数の実行
+      act(() => result.current[1].handleSearchTodo(eventObject));
+      // 結果判定
+      expect(result.current[0].showTodoList).toEqual(expectValue);
+    });
+    test("【正常系】検索ワードがない場合、元のTodoリストが反映される", () => {
+      // 予測値
+      const expectValue = INIT_TODO_LIST;
+      // 引数
+      const eventObject = {
+        target: {
+          value: "",
+        },
+      };
+
+      // hooks呼び出し
+      const { result } = renderHook(() => useApp());
+      // hooks関数の実行
+      act(() => result.current[1].handleSearchTodo(eventObject));
+      // 結果判定
+      expect(result.current[0].showTodoList).toEqual(expectValue);
     });
   });
 });

@@ -1,9 +1,4 @@
-.add-title {
-  text-align: center;
-  color: #fff;
-}
-
-input[type="text"] {
+.input {
   color: white;
   border: none;
   background: rgba(0, 0, 0, 0.2);
@@ -15,6 +10,7 @@ input[type="text"] {
   font-family: "Times New Roman", Times, serif;
   border-radius: 5px;
 }
-input[type="text"]::placeholder {
+
+.input::placeholder {
   color: #c0c0c0;
 }
