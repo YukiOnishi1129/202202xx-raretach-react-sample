@@ -130,6 +130,11 @@ describe("【Hooksテスト】useApp test", () => {
       // 表示用TodoListが予想通り更新されないこと
       expect(result.current[0].showTodoList).not.toEqual(expectTodoList);
     });
+
+    test("【正常系】検索キーワードがある場合", () => {
+      // TODO: 確認1: originTodoListへのTodo追加処理が正常に行われること
+      // TODO: 確認2: 検索結果でshowTodoListが更新されること
+    });
   });
 
   describe("【関数テスト】handleDeleteTodo", () => {
@@ -177,6 +182,11 @@ describe("【Hooksテスト】useApp test", () => {
       expect(result.current[0].originTodoList).toEqual(expectTodoList);
       // 表示用TodoListが予想通り更新されないこと
       expect(result.current[0].showTodoList).toEqual(expectTodoList);
+    });
+
+    test("【正常系】検索キーワードがある場合", () => {
+      // TODO: 確認1: originTodoListへのTodo削除処理が正常に行われること
+      // TODO: 確認2: 検索結果でshowTodoListが更新されること (showTodoListへもTodo削除処理の結果が反映されること)
     });
   });
 
