@@ -56,13 +56,20 @@ export const useApp = () => {
       // );
 
       // スプレッド構文の処理
-      setTodoList([
+      const newTodoList = [
         ...todoList,
         {
           id: nextUniqueId,
           title: addInputValue,
         },
-      ]);
+      ];
+      setTodoList(newTodoList);
+
+      if (searchKeyword !== "") {
+        setShowTodoList(searchTodo(newTodoList, searchKeyword));
+      } else {
+        setShowTodoList(newTodoList);
+      }
       // 採番IDを更新
       setUniqueId(nextUniqueId);
       // todo追加後、入力値をリセット
@@ -87,6 +94,12 @@ export const useApp = () => {
 
       // todoを削除したtodo listで更新
       setTodoList(newTodoList);
+
+      if (searchKeyword !== "") {
+        setShowTodoList(searchTodo(newTodoList, searchKeyword));
+      } else {
+        setShowTodoList(newTodoList);
+      }
     }
   };
 
