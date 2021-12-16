@@ -5,7 +5,7 @@
  */
 import React from "react";
 /* styles */
-import "./style.css";
+import styles from "./style.module.css";
 
 /**
  * AddTodo
@@ -18,8 +18,9 @@ export const AddTodo = (props) => {
 
   return (
     <>
-      <h2 className="add-title">ADD TODO</h2>
+      <h2 className={styles.subTitle}>ADD TODO</h2>
       <input
+        className={styles.input}
         type="text"
         placeholder="New Todo"
         value={addInputValue}

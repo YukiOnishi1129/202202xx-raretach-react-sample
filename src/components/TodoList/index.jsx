@@ -4,8 +4,10 @@
  * @package components
  */
 import React from "react";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /* styles */
-import "./style.css";
+import styles from "./style.module.css";
 
 /**
  * TodoList
@@ -17,14 +19,18 @@ export const TodoList = (props) => {
   const { todoList, handleDeleteTodo } = props;
 
   return (
-    <ul className="todo-list">
+    <ul className={styles.list}>
       {todoList.map((todo) => (
-        <li key={todo.id} className="todo">
-          <span className="todo-task">{todo.title}</span>
-          <i
-            className="far fa-trash-alt delete fa-lg"
-            onClick={() => handleDeleteTodo(todo.id, todo.title)}
-          ></i>
+        <li key={todo.id} className={styles.todo}>
+          <span className={styles.task}>{todo.title}</span>
+          <div className={styles.far}>
+            {/* https://www.digitalocean.com/community/tutorials/how-to-use-font-awesome-5-with-react-ja */}
+            <FontAwesomeIcon
+              icon={faTrashAlt}
+              size="lg"
+              onClick={() => handleDeleteTodo(todo.id, todo.title)}
+            />
+          </div>
         </li>
       ))}
     </ul>
