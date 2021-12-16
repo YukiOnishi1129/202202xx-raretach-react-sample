@@ -14,7 +14,7 @@ import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "../constants/data";
 export const useApp = () => {
   /* state */
   /* todo list */
-  const [todoList, setTodoList] = React.useState(INIT_TODO_LIST);
+  const [originTodoList, setOriginTodoList] = React.useState(INIT_TODO_LIST);
   /* add input title */
   const [addInputValue, setAddInputValue] = React.useState("");
   /* todo 採番ID */
@@ -46,7 +46,7 @@ export const useApp = () => {
       // pushでの配列追加は元の配列の値を変更するのでエラーになる
 
       // concatの処理
-      // setTodoList(
+      // setOriginTodoList(
       //   // concatとpushの違い
       //   // https://kskpblog.com/javascript-array-add/
       //   todoList.concat({
@@ -57,13 +57,13 @@ export const useApp = () => {
 
       // スプレッド構文の処理
       const newTodoList = [
-        ...todoList,
+        ...originTodoList,
         {
           id: nextUniqueId,
           title: addInputValue,
         },
       ];
-      setTodoList(newTodoList);
+      setOriginTodoList(newTodoList);
 
       if (searchKeyword !== "") {
         setShowTodoList(searchTodo(newTodoList, searchKeyword));
@@ -85,7 +85,7 @@ export const useApp = () => {
     if (window.confirm(`「${targetTitle}」のtodoを削除しますか？`)) {
       // 削除するid以外のtodoリストを再編集
       // filterを用いた方法
-      const newTodoList = todoList.filter((todo) => todo.id !== targetId);
+      const newTodoList = originTodoList.filter((todo) => todo.id !== targetId);
 
       // 削除するTodoの配列番号を取り出してspliceで削除する方法もある
       // const newTodoList = [...todoList];
@@ -93,7 +93,7 @@ export const useApp = () => {
       // newTodoList.splice(deleteIndex, 1);
 
       // todoを削除したtodo listで更新
-      setTodoList(newTodoList);
+      setOriginTodoList(newTodoList);
 
       if (searchKeyword !== "") {
         setShowTodoList(searchTodo(newTodoList, searchKeyword));
@@ -111,9 +111,9 @@ export const useApp = () => {
     const keyword = e.target.value;
     setSearchKeyword(keyword);
     if (keyword !== "") {
-      setShowTodoList(searchTodo(todoList, keyword));
+      setShowTodoList(searchTodo(originTodoList, keyword));
     } else {
-      setShowTodoList(todoList);
+      setShowTodoList(originTodoList);
     }
   };
 
@@ -133,7 +133,6 @@ export const useApp = () => {
 
   return [
     {
-      todoList,
       showTodoList,
       addInputValue,
       searchKeyword,
