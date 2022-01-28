@@ -67,11 +67,8 @@ export const useApp = () => {
       ];
       setOriginTodoList(newTodoList);
 
-      if (searchKeyword !== "") {
-        setShowTodoList(searchTodo(newTodoList, searchKeyword));
-      } else {
-        setShowTodoList(newTodoList);
-      }
+      updateShowTodoList(newTodoList, searchKeyword);
+
       // 採番IDを更新
       setUniqueId(nextUniqueId);
       // todo追加後、入力値をリセット
@@ -97,11 +94,7 @@ export const useApp = () => {
       // todoを削除したtodo listで更新
       setOriginTodoList(newTodoList);
 
-      if (searchKeyword !== "") {
-        setShowTodoList(searchTodo(newTodoList, searchKeyword));
-      } else {
-        setShowTodoList(newTodoList);
-      }
+      updateShowTodoList(newTodoList, searchKeyword);
     }
   };
 
@@ -112,11 +105,24 @@ export const useApp = () => {
   const handleSearchTodo = (e) => {
     const keyword = e.target.value;
     setSearchKeyword(keyword);
-    if (keyword !== "") {
-      setShowTodoList(searchTodo(originTodoList, keyword));
-    } else {
-      setShowTodoList(originTodoList);
-    }
+    // if (keyword !== "") {
+    //   setShowTodoList(searchTodo(originTodoList, keyword));
+    // } else {
+    //   setShowTodoList(originTodoList);
+    // }
+
+    updateShowTodoList(originTodoList, keyword);
+  };
+
+  /**
+   * 表示用Todoリスト更新処理
+   * @param {*} newTodoList
+   * @param {*} keyWord
+   */
+  const updateShowTodoList = (newTodoList, keyword) => {
+    setShowTodoList(
+      keyword !== "" ? searchTodo(newTodoList, keyword) : newTodoList
+    );
   };
 
   return [
