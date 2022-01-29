@@ -14,7 +14,7 @@ url:
 1. git clone
 
 ```
-git clone git@github.com:YukiOnishi1129/20211208-raretach-react-sample.git
+git clone git@github.com:YukiOnishi1129/202202xx-raretach-react-sample.git
 ```
 
 2. プロジェクトディレクトリに移動
@@ -22,7 +22,7 @@ git clone git@github.com:YukiOnishi1129/20211208-raretach-react-sample.git
 - ターミナルで以下のコマンドを実行
 
 ```
-cd 20211208-raretach-react-sample
+cd 202202xx-raretach-react-sample
 ```
 
 3. node_modules を install
